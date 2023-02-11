@@ -116,10 +116,18 @@ namespace RestAPIv2.Controllers
                 return NotFound();
             }
 
-            _context.UserInfos.Remove(userInfo);
-            await _context.SaveChangesAsync();
+            if(TokenController.userId == id)
+            {
+                _context.UserInfos.Remove(userInfo);
+                await _context.SaveChangesAsync();
+                return Ok();
+            }
+            else
+            {
+                return NotFound();
+            }
 
-            return NoContent();
+           
         }
 
         private bool UserInfoExists(int id)
