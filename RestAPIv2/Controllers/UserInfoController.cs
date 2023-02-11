@@ -126,8 +126,6 @@ namespace RestAPIv2.Controllers
             {
                 return NotFound();
             }
-
-           
         }
 
         private bool UserInfoExists(int id)
