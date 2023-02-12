@@ -19,6 +19,8 @@ builder.Services.AddSwaggerGen();
 var connection = builder.Configuration.GetConnectionString("ConnectionString");
 builder.Services.AddDbContextPool<Kigul1897SelfstudyContext>(options => options.UseSqlServer(connection));
 
+// Authorization Middleware
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.RequireHttpsMetadata= false;
@@ -33,6 +35,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     };
 });
 
+// Enable Cors for Localhost
+builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+{
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader();
+}));
+
 
 var app = builder.Build();
 
@@ -42,6 +52,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("MyPolicy");
 
 app.UseAuthentication();
 

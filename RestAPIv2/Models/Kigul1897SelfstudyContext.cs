@@ -36,8 +36,9 @@ public partial class Kigul1897SelfstudyContext : DbContext
             entity.Property(e => e.Name)
                 .HasMaxLength(100)
                 .IsUnicode(false);
-            entity.Property(e => e.UnitPrice).HasColumnType("decimal(18, 0)");
+            entity.Property(e => e.UnitPrice).HasColumnType("float");
         });
+
 
         modelBuilder.Entity<Purchase>(entity =>
         {

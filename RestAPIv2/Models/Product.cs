@@ -13,7 +13,7 @@ public partial class Product
 
     public string? Color { get; set; }
 
-    public decimal UnitPrice { get; set; }
+    public float UnitPrice { get; set; }
 
     public int AvailableQuantity { get; set; }
 }
